@@ -1,0 +1,131 @@
+# 定義：プロジェクト名
+site_name: (仮)Neko Saba Kan
+copyright: Copyright &copy; コミュニティサイト作成チーム  # フッターに表示
+#site_url: 
+
+# 開発環境の設定
+dev_addr: 'localhost:7777'  # mkdocs serve コマンドで起動するサイトurl
+
+
+# -----------------
+# 設定：theme
+# -----------------
+theme:
+  # name: mkdocs
+  name: material
+  language: 'ja'
+
+  features:
+    # ナビゲーション
+    - navigation.tabs         # メニューバー：タブ表示、左側バー： 下位階層の折り畳み
+    - toc.integrate           # 左側バー： 右側バーを表示せずに、左側バーへ統合する
+    - navigation.indexes
+    # - navigation.expand       # 左側バー： 展開表示
+    - navigation.tabs.sticky  # 最上位階層を、スクロール時も固定表示
+    # - navigation.sections     # 左側バー： 最上位階層の表示、長い場合でも展開のまま表示
+    - navigation.top          # 表示：back-to-top button
+    - header.autohide        # メニューバーを、スクロール時に自動で非表示にする
+    # 検索
+    - search.highlight        # 検索マッチ部分をハイライト表示する
+  # 設定： 左側バー、右側バーの非表示
+  # hide:
+  #   - navigation # 左側バーを非表示
+  #   - toc        # 右側バーを非表示
+
+  palette:
+    # 配色： https://squidfunk.github.io/mkdocs-material/setup/changing-the-colors/?h=dark+mode#changing-the-colors
+    # ダークモード off/on
+    - scheme: default
+      primary: blue   # indigo
+      accent: red
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to dark mode
+    - scheme: slate
+      primary: blue
+      accent: blue
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode
+
+
+# 検索機能：日本語設定 ※注意： 開発側のミスで、ja でなく jp を指定
+extra:
+  search:
+    language: 'jp'
+
+extra_css:
+    - stylesheets/custom.css  # カスタマイズ設定
+    # FontAwesome
+    - "https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css"
+    # Mermaid
+#   - https://unpkg.com/mermaid@8.0.0/dist/mermaid.css
+
+# extra_javascript:
+#   - https://unpkg.com/mermaid@8.0.0/dist/mermaid.min.js
+
+
+# -----------------
+# 設定：書式
+# -----------------
+markdown_extensions:
+  - toc:
+      toc_depth: 3  # ファイル内の目次に表示する上限階層
+      permalink: true
+  # 拡張フォント
+  - fontawesome_markdown
+
+  # タスクリスト
+  - pymdownx.tasklist:
+      custom_checkbox: true       # 丸形緑のチェックボックス
+      # clickable_checkbox: true  # On/Off可能にする
+
+  # 定義リスト
+  - def_list          # 定義 [改行] :  説明文
+  # !!!, ???記法
+  - admonition        # !!!記法による note 表示
+  - pymdownx.details  # ???記法による note 折畳表示
+
+  # コンテントタブ表示
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+
+  # 略語：abbreviations
+  - abbr                # 略語のツールチップ説明   参照 略語  定義 *[略語]: 説明文
+  - pymdownx.snippets   # 外部ファイルで略語を定義  参照： --8<-- "includes/abbreviations.md"
+
+  # 脚注:footnotees
+  - footnotes           # 脚注のリンク表示  参照 [^1]  定義 [^1]: 説明文
+
+  # ボタン
+  - attr_list           # インラインHTMLでHTTML属性、CSSクラスを使用可能にする
+
+  # 絵文字検索
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+
+  # # ダイアグラム
+  # - pymdownx.superfences:
+  #     custom_fences:
+  #       - name: mermaid
+  #         class: mermaid
+  #         format: !!python/name:pymdownx.superfences.fence_code_format
+  #         # https://mermaid-js.github.io/mermaid/#/
+
+
+# -----------------
+# ナビゲーション： 文書ファイル階層の指定
+# -----------------
+nav:
+  - 'トップ': index.md
+  - 'ガイド':
+    - 'インストール':
+       - '導入ガイド': guides/install.md
+    - 'コマンド':
+       - '行ずらし': commands/mslide/mslide.md
+  - '【サイト設計】':
+    - design.md
+
+
